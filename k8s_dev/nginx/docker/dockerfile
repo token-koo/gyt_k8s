@@ -1,0 +1,4 @@
+FROM 10.4.60.235:5000/nginx:v0.1
+MAINTAINER xxg
+ADD ./nginxdata.tar /usr/share/nginx/html
+COPY ./nginxconf/default.conf  /etc/nginx/conf.d/

@@ -1,0 +1,32 @@
+首先，在第一个副本集节点上执行 MongoDB shell：
+$ kubectl exec -it mongo-0 -- mongo
+现在，启动 MongoDB 副本集：
+> rs.initiate()
+为副本集的第一个成员重新配置正确的 DNS 名称：
+> var cfg = rs.conf();cfg.members[0].host="mongo-0.mongo:27017";rs.reconfig(cfg)
+添加剩余的副本集节点：
+1
+2
+rs.add("mongo-1.mongo:27017")
+rs.add("mongo-2.mongo:27017")
+最后，检查新配置，以确认该副本集：
+> rs.status()
+
+
+mongodb://mongo-0.mongo:27017,mongo-1.mongo:27017,mongo-2.mongo/myproject?replicaSet=rs0
+
+ mongorestore   -d admin --dir backup/admin/
+ mongorestore   -d mx_game  --dir backup/mx_game/
+ mongorestore   -d mx_game_dev --dir backup/mx_game_dev/
+ mongorestore   -d game_client --dir backup/game_client/
+ mongorestore   -d game_client_dev --dir backup/game_client_dev/
+ mongorestore   -d register_center --dir backup/register_center/
+ mongorestore   -d register_center_dev --dir backup/register_center_dev/
+
+
+
+https://www.ibm.com/developerworks/cn/cloud/library/cl-deploy-mongodb-replica-set-using-ibm-cloud-container-service/index.html
+https://wiki.shileizcc.com/confluence/pages/viewpage.action?pageId=27000909
+
+
+echo "rs.slaveOk();" > /root/.mongorc.js 

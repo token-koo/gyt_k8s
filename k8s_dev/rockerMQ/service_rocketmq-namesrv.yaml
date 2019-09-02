@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketmq-namesrv
+  namespace : rocketmq-operator
+  labels:
+    name: rocketmq
+spec:
+  type: NodePort
+  ports:
+    - name: mq-namesrv
+      port: 9876
+      nodePort: 30013
+      targetPort: 9876
+  selector:
+    app: rocketmq-namesrv

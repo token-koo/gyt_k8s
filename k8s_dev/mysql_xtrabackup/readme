@@ -1,0 +1,7 @@
+
+docker pull ist0ne/xtrabackup
+docker tag ist0ne/xtrabackup:latest gcr.io/google-samples/xtrabackup:1.0
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'moxi1234' WITH GRANT OPTION; 
+
+
+https://blog.csdn.net/z770816239/article/details/82769534

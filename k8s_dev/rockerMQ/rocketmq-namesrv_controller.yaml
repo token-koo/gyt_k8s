@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rocketmq-namesrv-controller
+  namespace : rocketmq-operator
+  labels:
+    name: rocketmq_server
+spec:
+  type: ClusterIP 
+  ports:
+    - name: mq-namesrv
+      port: 9876
+      targetPort: 9876
+  selector:
+    app: rocketmq-namesrv

@@ -1,0 +1,20 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: gluster-heketi-pod
+spec:
+  containers:
+  - name: gluster-heketi-container
+    image: busybox
+    command:
+    - sleep
+    - "3600"
+    volumeMounts:
+    - name: gluster-heketi-volume
+      mountPath: "/pv-data"
+      readOnly: false
+  volumes:
+  - name: gluster-heketi-volume
+    persistentVolumeClaim:
+      claimName: gluster-heketi-pvc
+
