@@ -1,0 +1,12 @@
+kubectl create -f /root/k8s_dev/consul/nodeport 
+kubectl create -f /root/k8s_dev/consul/service
+kubectl create -f /root/k8s_dev/consul/statefulset 
+
+测试：
+kubectl get pods |grep -i consu
+kubectl exec -it consul-0 bash
+consul members 
+consul operator raft list-peers
+
+#待以下都部署完毕后，访问宿主机Ip+30001即可手工添加配置consul配置，通过这条命令获取服务组件的cluster ip即可。
+kubectl get svc --all-namespaces
